@@ -12,9 +12,9 @@ namespace InvoiceFile
     {
         // This function will get triggered/executed when a new message is written 
         // on an Azure Queue called queue.
-        public static void ProcessQueueMessage([QueueTrigger("queue")] string message, TextWriter log)
+        public static void ProcessQueueMessage([QueueTrigger("statuslog")] string message, TextWriter log)
         {
-            log.WriteLine(message);
+            log.WriteLine("This is a diagnostic message: " + message);
         }
     }
 }

@@ -52,3 +52,4 @@ P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\bin\Microsoft.Owi
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\obj\Debug\CimscoManage.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\obj\Debug\CimscoManage.pdb
+P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\obj\Debug\CimscoManage.csprojResolveAssemblyReference.cache
