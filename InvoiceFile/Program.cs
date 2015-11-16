@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage;
 using System.Configuration;
+using System.IO;
 
 namespace InvoiceFile
 {
@@ -17,16 +18,21 @@ namespace InvoiceFile
         // AzureWebJobsDashboard and AzureWebJobsStorage
         static void Main()
         {
-            //var host = new JobHost();
-            //// The following code ensures that the WebJob will be running continuously
-            //host.RunAndBlock();
+            var host = new JobHost();
+            host.Call(typeof(Functions).GetMethod("ProcessMethod"));
+            // The following code ensures that the WebJob will be running continuously
+            host.RunAndBlock();
 
+
+        }
+        [NoAutomaticTriggerAttribute]
+        public static void ProcessMethod(TextWriter log)
+        {
             StorageCredentials credential = new StorageCredentials(ConfigurationManager.AppSettings["AccountName"], ConfigurationManager.AppSettings["AccountKey"]);
             CloudStorageAccount account = new CloudStorageAccount(credential, true);
-            UploadToBlog(account);
+            UploadToBlog(account, log);
         }
-
-        private static void UploadToBlog(CloudStorageAccount storageAcount)
+        private static void UploadToBlog(CloudStorageAccount storageAcount, TextWriter log)
         {
             string log_filename = DateTime.Now.ToString("dd-MMM-yyyy HH-mm") + ".txt";
             StringBuilder sb = new StringBuilder();
@@ -41,12 +47,15 @@ namespace InvoiceFile
                     BlobStorageFunction.CreateContainer(containername, storageAcount);
                     sb.Append("New Container Created :- " + containername + Environment.NewLine);
                     sb.Append(Environment.NewLine);
+                    log.WriteLine("New Container Created :- " + containername + Environment.NewLine);
                 }
                 catch (Exception e)
                 {
                     sb.Append("Error While creating container :- " + containername + Environment.NewLine);
                     sb.Append("Error: " + e.Message + Environment.NewLine);
                     sb.Append(Environment.NewLine);
+                    log.WriteLine("Error While creating container :- " + containername + Environment.NewLine);
+                    log.WriteLine("Error: " + e.Message + Environment.NewLine);
                 }
             }
 
@@ -68,12 +77,15 @@ namespace InvoiceFile
                             DropBoxFunction.GetDropboxFilesDelete("/" + _container + "/" + _blobname);
                             sb.Append("Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
                             sb.Append(Environment.NewLine);
+                            log.WriteLine("Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
                         }
                         catch (Exception e)
                         {
                             sb.Append("Error While creating container :- " + _blobname + Environment.NewLine);
                             sb.Append("Error: " + e.Message + Environment.NewLine);
                             sb.Append(Environment.NewLine);
+                            log.WriteLine("Error While creating container :- " + _blobname + Environment.NewLine);
+                            log.WriteLine("Error: " + e.Message + Environment.NewLine);
                         }
                     }
                     foreach (var _blobname in _already_exist_delete)
@@ -83,12 +95,15 @@ namespace InvoiceFile
                             DropBoxFunction.GetDropboxFilesDelete("/" + _container + "/" + _blobname);
                             sb.Append("File have already exist so, Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
                             sb.Append(Environment.NewLine);
+                            sb.Append("File have already exist so, Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
                         }
                         catch (Exception e)
                         {
                             sb.Append("Error While Deleteing container :- " + _blobname + Environment.NewLine);
                             sb.Append("Error: " + e.Message + Environment.NewLine);
                             sb.Append(Environment.NewLine);
+                            log.WriteLine("Error While Deleteing container :- " + _blobname + Environment.NewLine);
+                            log.WriteLine("Error: " + e.Message + Environment.NewLine);
                         }
                     }
 
@@ -97,6 +112,7 @@ namespace InvoiceFile
                 {
                     sb.Append("Error: " + e.Message + Environment.NewLine);
                     sb.Append(Environment.NewLine);
+                    log.WriteLine("Error: " + e.Message + Environment.NewLine);
                 }
             }
 
@@ -104,7 +120,7 @@ namespace InvoiceFile
             {
                 BlobStorageFunction.UploadBlob(log_filename, ConfigurationManager.AppSettings["LoggingContainerName"], sb.ToString(), storageAcount);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
             }
