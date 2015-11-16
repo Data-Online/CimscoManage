@@ -28,27 +28,86 @@ namespace InvoiceFile
 
         private static void UploadToBlog(CloudStorageAccount storageAcount)
         {
+            string log_filename = DateTime.Now.ToString("dd-MMM-yyyy HH-mm") + ".txt";
+            StringBuilder sb = new StringBuilder();
+
             var _containerlist = BlobStorageFunction.GetContainerListByStorageAccount(storageAcount).Select(s => s.Name).ToList();
             var _directorylist = FilesReaderDirectory.GetNameInList(DropBoxFunction.GetDropboxFilesList().Contents.Where(w => w.IsDirectory == true).Select(s => s.Path).ToList());
             var _need_to_create_container = _directorylist.Where(w => !_containerlist.Contains(w.ToLower())).ToList();
             foreach (var containername in _need_to_create_container)
             {
-                BlobStorageFunction.CreateContainer(containername, storageAcount);
+                try
+                {
+                    BlobStorageFunction.CreateContainer(containername, storageAcount);
+                    sb.Append("New Container Created :- " + containername + Environment.NewLine);
+                    sb.Append(Environment.NewLine);
+                }
+                catch (Exception e)
+                {
+                    sb.Append("Error While creating container :- " + containername + Environment.NewLine);
+                    sb.Append("Error: " + e.Message + Environment.NewLine);
+                    sb.Append(Environment.NewLine);
+                }
             }
 
             foreach (var _container in _directorylist)
             {
-                var _filelistdirectory = FilesReaderDirectory.GetNameInList(DropBoxFunction.GetDropboxFilesList("/" + _container).Contents.Where(w => w.IsDirectory == false).Select(s => s.Path).ToList());
-                var _filesfromcontainer = BlobStorageFunction.GetBlobListByContainername(_container, storageAcount).Select(s => System.IO.Path.GetFileName(s.Uri.AbsoluteUri)).ToList();
-                var _need_to_create_blob = _filelistdirectory.Where(w => !_filesfromcontainer.Contains(w.ToLower())).ToList();
-                foreach (var _blobname in _need_to_create_blob)
+                try
                 {
-                    string content = DropBoxFunction.GetDropboxFilesDownload("/" + _container + "/" + _blobname);
-                    BlobStorageFunction.UploadBlob(_blobname, _container, content, storageAcount);
-                    DropBoxFunction.GetDropboxFilesDelete("/" + _container + "/" + _blobname);
+                    var _filelistdirectory = FilesReaderDirectory.GetNameInList(DropBoxFunction.GetDropboxFilesList("/" + _container).Contents.Where(w => w.IsDirectory == false).Select(s => s.Path).ToList());
+                    var _filesfromcontainer = BlobStorageFunction.GetBlobListByContainername(_container, storageAcount).Select(s => System.IO.Path.GetFileName(s.Uri.AbsoluteUri)).ToList();
+                    var _need_to_create_blob = _filelistdirectory.Where(w => !_filesfromcontainer.Contains(w.ToLower())).ToList();
+                    var _already_exist_delete = _filesfromcontainer.Where(w => _filelistdirectory.Contains(w.ToLower())).ToList();
+                    foreach (var _blobname in _need_to_create_blob)
+                    {
+                        try
+                        {
+                            string content = DropBoxFunction.GetDropboxFilesDownload("/" + _container + "/" + _blobname);
+                            BlobStorageFunction.UploadBlob(_blobname, _container, content, storageAcount);
+                            sb.Append("New blob(file) Created :- " + _blobname + Environment.NewLine);
+                            DropBoxFunction.GetDropboxFilesDelete("/" + _container + "/" + _blobname);
+                            sb.Append("Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
+                            sb.Append(Environment.NewLine);
+                        }
+                        catch (Exception e)
+                        {
+                            sb.Append("Error While creating container :- " + _blobname + Environment.NewLine);
+                            sb.Append("Error: " + e.Message + Environment.NewLine);
+                            sb.Append(Environment.NewLine);
+                        }
+                    }
+                    foreach (var _blobname in _already_exist_delete)
+                    {
+                        try
+                        {
+                            DropBoxFunction.GetDropboxFilesDelete("/" + _container + "/" + _blobname);
+                            sb.Append("File have already exist so, Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
+                            sb.Append(Environment.NewLine);
+                        }
+                        catch (Exception e)
+                        {
+                            sb.Append("Error While Deleteing container :- " + _blobname + Environment.NewLine);
+                            sb.Append("Error: " + e.Message + Environment.NewLine);
+                            sb.Append(Environment.NewLine);
+                        }
+                    }
+
+                }
+                catch (Exception e)
+                {
+                    sb.Append("Error: " + e.Message + Environment.NewLine);
+                    sb.Append(Environment.NewLine);
                 }
             }
 
+            try
+            {
+                BlobStorageFunction.UploadBlob(log_filename, ConfigurationManager.AppSettings["LoggingContainerName"], sb.ToString(), storageAcount);
+            }
+            catch(Exception e)
+            {
+
+            }
         }
     }
 }
