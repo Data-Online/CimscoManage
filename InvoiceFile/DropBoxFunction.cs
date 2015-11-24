@@ -19,7 +19,7 @@ namespace InvoiceFile
             return contentlist;
         }
 
-        public static string GetDropboxFilesDownload(string filepath)
+        public static byte[] GetDropboxFilesDownload(string filepath)
         {
             string ApiUrl = "https://content.dropboxapi.com/1/files/auto" + ConfigurationManager.AppSettings["DropBoxFolderPath"] + filepath;
             using (var client = new System.Net.Http.HttpClient())
@@ -30,7 +30,7 @@ namespace InvoiceFile
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + ConfigurationManager.AppSettings["DropBoxAccessToken"]);
                 using (var response = client.GetAsync("").Result)
                 {
-                    return response.Content.ReadAsStringAsync().Result;
+                    return response.Content.ReadAsByteArrayAsync().Result;
                 }
             }
         }

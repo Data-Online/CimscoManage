@@ -8,6 +8,7 @@ using Microsoft.WindowsAzure.Storage.Auth;
 using Microsoft.WindowsAzure.Storage;
 using System.Configuration;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace InvoiceFile
 {
@@ -19,9 +20,13 @@ namespace InvoiceFile
         static void Main()
         {
             var host = new JobHost();
-            host.Call(typeof(Functions).GetMethod("ProcessMethod"));
+            host.Call(typeof(Program).GetMethod("ProcessMethod"));
             // The following code ensures that the WebJob will be running continuously
             host.RunAndBlock();
+            //TextWriter log = null;
+            //StorageCredentials credential = new StorageCredentials(ConfigurationManager.AppSettings["AccountName"], ConfigurationManager.AppSettings["AccountKey"]);
+            //CloudStorageAccount account = new CloudStorageAccount(credential, true);
+            //UploadToBlog(account, log);
 
 
         }
@@ -30,15 +35,16 @@ namespace InvoiceFile
         {
             StorageCredentials credential = new StorageCredentials(ConfigurationManager.AppSettings["AccountName"], ConfigurationManager.AppSettings["AccountKey"]);
             CloudStorageAccount account = new CloudStorageAccount(credential, true);
-            UploadToBlog(account, log);
+            string logwrite = UploadToBlog(account);
+            log.Write(logwrite);
         }
-        private static void UploadToBlog(CloudStorageAccount storageAcount, TextWriter log)
+        private static string UploadToBlog(CloudStorageAccount storageAcount)
         {
             string log_filename = DateTime.Now.ToString("dd-MMM-yyyy HH-mm") + ".txt";
             StringBuilder sb = new StringBuilder();
-
+            var regex = new Regex(@"\.pdf.");
             var _containerlist = BlobStorageFunction.GetContainerListByStorageAccount(storageAcount).Select(s => s.Name).ToList();
-            var _directorylist = FilesReaderDirectory.GetNameInList(DropBoxFunction.GetDropboxFilesList().Contents.Where(w => w.IsDirectory == true).Select(s => s.Path).ToList());
+            var _directorylist = FilesReaderDirectory.GetNameInList(DropBoxFunction.GetDropboxFilesList().Contents.Where(w => w.IsDirectory == true).Select(s => s.Path).ToList()).Where(w => w.StartsWith("0")).ToList();
             var _need_to_create_container = _directorylist.Where(w => !_containerlist.Contains(w.ToLower())).ToList();
             foreach (var containername in _need_to_create_container)
             {
@@ -47,15 +53,12 @@ namespace InvoiceFile
                     BlobStorageFunction.CreateContainer(containername, storageAcount);
                     sb.Append("New Container Created :- " + containername + Environment.NewLine);
                     sb.Append(Environment.NewLine);
-                    log.WriteLine("New Container Created :- " + containername + Environment.NewLine);
                 }
                 catch (Exception e)
                 {
                     sb.Append("Error While creating container :- " + containername + Environment.NewLine);
                     sb.Append("Error: " + e.Message + Environment.NewLine);
                     sb.Append(Environment.NewLine);
-                    log.WriteLine("Error While creating container :- " + containername + Environment.NewLine);
-                    log.WriteLine("Error: " + e.Message + Environment.NewLine);
                 }
             }
 
@@ -63,7 +66,7 @@ namespace InvoiceFile
             {
                 try
                 {
-                    var _filelistdirectory = FilesReaderDirectory.GetNameInList(DropBoxFunction.GetDropboxFilesList("/" + _container).Contents.Where(w => w.IsDirectory == false).Select(s => s.Path).ToList());
+                    var _filelistdirectory = FilesReaderDirectory.GetNameInList(DropBoxFunction.GetDropboxFilesList("/" + _container).Contents.Where(w => w.IsDirectory == false).Select(s => s.Path).ToList()).Where(w => w.EndsWith(".pdf", StringComparison.OrdinalIgnoreCase) && !regex.IsMatch(w)).ToList();
                     var _filesfromcontainer = BlobStorageFunction.GetBlobListByContainername(_container, storageAcount).Select(s => System.IO.Path.GetFileName(s.Uri.AbsoluteUri)).ToList();
                     var _need_to_create_blob = _filelistdirectory.Where(w => !_filesfromcontainer.Contains(w.ToLower())).ToList();
                     var _already_exist_delete = _filesfromcontainer.Where(w => _filelistdirectory.Contains(w.ToLower())).ToList();
@@ -71,21 +74,18 @@ namespace InvoiceFile
                     {
                         try
                         {
-                            string content = DropBoxFunction.GetDropboxFilesDownload("/" + _container + "/" + _blobname);
+                            byte[] content = DropBoxFunction.GetDropboxFilesDownload("/" + _container + "/" + _blobname);
                             BlobStorageFunction.UploadBlob(_blobname, _container, content, storageAcount);
                             sb.Append("New blob(file) Created :- " + _blobname + Environment.NewLine);
                             DropBoxFunction.GetDropboxFilesDelete("/" + _container + "/" + _blobname);
                             sb.Append("Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
                             sb.Append(Environment.NewLine);
-                            log.WriteLine("Deleting file from Dropbox :- " + _blobname + Environment.NewLine);
                         }
                         catch (Exception e)
                         {
                             sb.Append("Error While creating container :- " + _blobname + Environment.NewLine);
                             sb.Append("Error: " + e.Message + Environment.NewLine);
                             sb.Append(Environment.NewLine);
-                            log.WriteLine("Error While creating container :- " + _blobname + Environment.NewLine);
-                            log.WriteLine("Error: " + e.Message + Environment.NewLine);
                         }
                     }
                     foreach (var _blobname in _already_exist_delete)
@@ -102,8 +102,6 @@ namespace InvoiceFile
                             sb.Append("Error While Deleteing container :- " + _blobname + Environment.NewLine);
                             sb.Append("Error: " + e.Message + Environment.NewLine);
                             sb.Append(Environment.NewLine);
-                            log.WriteLine("Error While Deleteing container :- " + _blobname + Environment.NewLine);
-                            log.WriteLine("Error: " + e.Message + Environment.NewLine);
                         }
                     }
 
@@ -112,18 +110,18 @@ namespace InvoiceFile
                 {
                     sb.Append("Error: " + e.Message + Environment.NewLine);
                     sb.Append(Environment.NewLine);
-                    log.WriteLine("Error: " + e.Message + Environment.NewLine);
                 }
             }
 
             try
             {
-                BlobStorageFunction.UploadBlob(log_filename, ConfigurationManager.AppSettings["LoggingContainerName"], sb.ToString(), storageAcount);
+                BlobStorageFunction.UploadBlob(log_filename, ConfigurationManager.AppSettings["LoggingContainerName"], Encoding.ASCII.GetBytes(sb.ToString()), storageAcount);
             }
             catch (Exception e)
             {
 
             }
+            return sb.ToString();
         }
     }
 }
