@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CimscoManage.Tests", "Cimsc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceFile", "InvoiceFile\InvoiceFile.csproj", "{4E2E5A59-2B6B-4DA3-9848-A94FA14BDD81}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InvoiceDataUpload", "InvoiceDataUpload\InvoiceDataUpload.csproj", "{97079957-EFCB-4922-9F3F-49D88115258B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{4E2E5A59-2B6B-4DA3-9848-A94FA14BDD81}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E2E5A59-2B6B-4DA3-9848-A94FA14BDD81}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E2E5A59-2B6B-4DA3-9848-A94FA14BDD81}.Release|Any CPU.Build.0 = Release|Any CPU
+		{97079957-EFCB-4922-9F3F-49D88115258B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{97079957-EFCB-4922-9F3F-49D88115258B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{97079957-EFCB-4922-9F3F-49D88115258B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{97079957-EFCB-4922-9F3F-49D88115258B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CimscoPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="80" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="Contact_ContactId" Type="int" />
+        </EntityType>
+        <EntityType Name="EnergyCharges">
+          <Key>
+            <PropertyRef Name="EnergyChargeId" />
+          </Key>
+          <Property Name="EnergyChargeId" Type="int" Nullable="false" />
+          <Property Name="BD0004" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0408" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0812" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1216" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1620" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD2024" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0004" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0408" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0812" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1216" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1620" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD2024" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0004R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0408R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0812R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1216R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1620R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD2024R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0004R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0408R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0812R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1216R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1620R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD2024R" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BDQ0004" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BDL0004" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnergyPoints">
+          <Key>
+            <PropertyRef Name="EnergyPointId" />
+          </Key>
+          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnergyPointNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddressId" Type="int" />
+          <Property Name="Contact_ContactId" Type="int" />
+        </EntityType>
+        <EntityType Name="InvoiceSummaries">
+          <Key>
+            <PropertyRef Name="InvoiceSummaryId" />
+          </Key>
+          <Property Name="InvoiceSummaryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InvoiceId" Type="int" Nullable="false" />
+          <Property Name="InvoiceDate" Type="datetime" Nullable="false" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="GstTotal" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="InvoiceTotal" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="AccountNumber" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="CustomerNumber" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="SiteId" Type="int" Nullable="false" />
+          <Property Name="NetworkChargesTotal" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="EnergyChargesTotal" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="MiscChargesTotal" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalCharges" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="GSTCharges" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalNetworkCharges" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalMiscCharges" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalEnergyCharges" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="ConnectionNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="InvoiceDueDate" Type="datetime" Nullable="false" />
+          <Property Name="Month" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="Year" Type="nvarchar(max)" />
+          <Property Name="Approved" Type="bit" Nullable="false" />
+          <Property Name="ApprovedById" Type="nvarchar" MaxLength="128" />
+          <Property Name="ApprovedDate" Type="datetime" />
+          <Property Name="PercentageChange" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="PeriodStart" Type="datetime" Nullable="false" />
+          <Property Name="PeriodEnd" Type="datetime" Nullable="false" />
+          <Property Name="EnergyPointId" Type="int" Nullable="false" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="KwhTotal" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="Verified" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NetworkCharges">
+          <Key>
+            <PropertyRef Name="NetworkChargeId" />
+          </Key>
+          <Property Name="NetworkChargeId" Type="int" Nullable="false" />
+          <Property Name="VariableBD" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="VariableNBD" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="CapacityCharge" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="DemandCharge" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="FixedCharge" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OtherCharges">
+          <Key>
+            <PropertyRef Name="OtherChargeId" />
+          </Key>
+          <Property Name="OtherChargeId" Type="int" Nullable="false" />
+          <Property Name="BDSVC" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BDSVCR" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBDSVC" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBDSVCR" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="EALevy" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="EALevyR" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="AdminCharge" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="80" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="CustomerId" Type="int" />
+          <Property Name="SiteArea" Type="decimal" Precision="12" Scale="4" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId">
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EnergyCharges" Type="Self.EnergyCharges" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InvoiceSummaries">
+              <PropertyRef Name="InvoiceSummaryId" />
+            </Principal>
+            <Dependent Role="EnergyCharges">
+              <PropertyRef Name="EnergyChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId">
+          <End Role="EnergyPoints" Type="Self.EnergyPoints" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyPoints">
+              <PropertyRef Name="EnergyPointId" />
+            </Principal>
+            <Dependent Role="InvoiceSummaries">
+              <PropertyRef Name="EnergyPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InvoiceSummaries_dbo_Sites_SiteId">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="InvoiceSummaries">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId">
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NetworkCharges" Type="Self.NetworkCharges" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InvoiceSummaries">
+              <PropertyRef Name="InvoiceSummaryId" />
+            </Principal>
+            <Dependent Role="NetworkCharges">
+              <PropertyRef Name="NetworkChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId">
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OtherCharges" Type="Self.OtherCharges" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InvoiceSummaries">
+              <PropertyRef Name="InvoiceSummaryId" />
+            </Principal>
+            <Dependent Role="OtherCharges">
+              <PropertyRef Name="OtherChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sites_dbo_Customers_CustomerId">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sites_dbo_Groups_GroupId">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="0..1" />
+          <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CimscoPortalModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergyCharges" EntityType="Self.EnergyCharges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergyPoints" EntityType="Self.EnergyPoints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InvoiceSummaries" EntityType="Self.InvoiceSummaries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NetworkCharges" EntityType="Self.NetworkCharges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OtherCharges" EntityType="Self.OtherCharges" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" Association="Self.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId">
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+            <End Role="EnergyCharges" EntitySet="EnergyCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" Association="Self.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId">
+            <End Role="EnergyPoints" EntitySet="EnergyPoints" />
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" Association="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" Association="Self.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId">
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+            <End Role="NetworkCharges" EntitySet="NetworkCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" Association="Self.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId">
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+            <End Role="OtherCharges" EntitySet="OtherCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sites_dbo_Customers_CustomerId" Association="Self.FK_dbo_Sites_dbo_Customers_CustomerId">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sites_dbo_Groups_GroupId" Association="Self.FK_dbo_Sites_dbo_Groups_GroupId">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CimscoPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="Contact_ContactId" Type="Int32" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Customers_CustomerId" FromRole="Customers" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="EnergyCharge">
+          <Key>
+            <PropertyRef Name="EnergyChargeId" />
+          </Key>
+          <Property Name="EnergyChargeId" Type="Int32" Nullable="false" />
+          <Property Name="BD0004" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0408" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0812" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1216" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1620" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD2024" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0004" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0408" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0812" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1216" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1620" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD2024" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0004R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0408R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD0812R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1216R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD1620R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BD2024R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0004R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0408R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD0812R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1216R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD1620R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBD2024R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BDQ0004" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BDL0004" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <NavigationProperty Name="InvoiceSummary" Relationship="Self.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" FromRole="EnergyCharges" ToRole="InvoiceSummaries" />
+        </EntityType>
+        <EntityType Name="EnergyPoint">
+          <Key>
+            <PropertyRef Name="EnergyPointId" />
+          </Key>
+          <Property Name="EnergyPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnergyPointNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="InvoiceSummaries" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" FromRole="EnergyPoints" ToRole="InvoiceSummaries" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AddressId" Type="Int32" />
+          <Property Name="Contact_ContactId" Type="Int32" />
+          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Groups_GroupId" FromRole="Groups" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="InvoiceSummary">
+          <Key>
+            <PropertyRef Name="InvoiceSummaryId" />
+          </Key>
+          <Property Name="InvoiceSummaryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoiceId" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GstTotal" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="InvoiceTotal" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="AccountNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" />
+          <Property Name="NetworkChargesTotal" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="EnergyChargesTotal" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="MiscChargesTotal" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalCharges" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="GSTCharges" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalNetworkCharges" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalMiscCharges" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="TotalEnergyCharges" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="ConnectionNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="InvoiceDueDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Month" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Year" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Approved" Type="Boolean" Nullable="false" />
+          <Property Name="ApprovedById" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ApprovedDate" Type="DateTime" Precision="3" />
+          <Property Name="PercentageChange" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="PeriodStart" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PeriodEnd" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EnergyPointId" Type="Int32" Nullable="false" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="KwhTotal" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="Verified" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EnergyCharge" Relationship="Self.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" FromRole="InvoiceSummaries" ToRole="EnergyCharges" />
+          <NavigationProperty Name="EnergyPoint" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" FromRole="InvoiceSummaries" ToRole="EnergyPoints" />
+          <NavigationProperty Name="Site" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" FromRole="InvoiceSummaries" ToRole="Sites" />
+          <NavigationProperty Name="NetworkCharge" Relationship="Self.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" FromRole="InvoiceSummaries" ToRole="NetworkCharges" />
+          <NavigationProperty Name="OtherCharge" Relationship="Self.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" FromRole="InvoiceSummaries" ToRole="OtherCharges" />
+        </EntityType>
+        <EntityType Name="NetworkCharge">
+          <Key>
+            <PropertyRef Name="NetworkChargeId" />
+          </Key>
+          <Property Name="NetworkChargeId" Type="Int32" Nullable="false" />
+          <Property Name="VariableBD" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="VariableNBD" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="CapacityCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="DemandCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="FixedCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <NavigationProperty Name="InvoiceSummary" Relationship="Self.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" FromRole="NetworkCharges" ToRole="InvoiceSummaries" />
+        </EntityType>
+        <EntityType Name="OtherCharge">
+          <Key>
+            <PropertyRef Name="OtherChargeId" />
+          </Key>
+          <Property Name="OtherChargeId" Type="Int32" Nullable="false" />
+          <Property Name="BDSVC" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="BDSVCR" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBDSVC" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="NBDSVCR" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="EALevy" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="EALevyR" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <Property Name="AdminCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <NavigationProperty Name="InvoiceSummary" Relationship="Self.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" FromRole="OtherCharges" ToRole="InvoiceSummaries" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="CustomerId" Type="Int32" />
+          <Property Name="SiteArea" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_dbo_Sites_dbo_Customers_CustomerId" FromRole="Sites" ToRole="Customers" />
+          <NavigationProperty Name="Group" Relationship="Self.FK_dbo_Sites_dbo_Groups_GroupId" FromRole="Sites" ToRole="Groups" />
+          <NavigationProperty Name="InvoiceSummaries" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" FromRole="Sites" ToRole="InvoiceSummaries" />
+        </EntityType>
+        <Association Name="FK_dbo_Sites_dbo_Customers_CustomerId">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="Sites" Type="Self.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId">
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummary" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="EnergyCharges" Type="Self.EnergyCharge" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InvoiceSummaries">
+              <PropertyRef Name="InvoiceSummaryId" />
+            </Principal>
+            <Dependent Role="EnergyCharges">
+              <PropertyRef Name="EnergyChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId">
+          <End Role="EnergyPoints" Type="Self.EnergyPoint" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergyPoints">
+              <PropertyRef Name="EnergyPointId" />
+            </Principal>
+            <Dependent Role="InvoiceSummaries">
+              <PropertyRef Name="EnergyPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Sites_dbo_Groups_GroupId">
+          <End Role="Groups" Type="Self.Group" Multiplicity="0..1" />
+          <End Role="Sites" Type="Self.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InvoiceSummaries_dbo_Sites_SiteId">
+          <End Role="Sites" Type="Self.Site" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="InvoiceSummaries">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId">
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummary" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="NetworkCharges" Type="Self.NetworkCharge" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InvoiceSummaries">
+              <PropertyRef Name="InvoiceSummaryId" />
+            </Principal>
+            <Dependent Role="NetworkCharges">
+              <PropertyRef Name="NetworkChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId">
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummary" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OtherCharges" Type="Self.OtherCharge" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="InvoiceSummaries">
+              <PropertyRef Name="InvoiceSummaryId" />
+            </Principal>
+            <Dependent Role="OtherCharges">
+              <PropertyRef Name="OtherChargeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CimscoPortalEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="EnergyCharges" EntityType="Self.EnergyCharge" />
+          <EntitySet Name="EnergyPoints" EntityType="Self.EnergyPoint" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="InvoiceSummaries" EntityType="Self.InvoiceSummary" />
+          <EntitySet Name="NetworkCharges" EntityType="Self.NetworkCharge" />
+          <EntitySet Name="OtherCharges" EntityType="Self.OtherCharge" />
+          <EntitySet Name="Sites" EntityType="Self.Site" />
+          <AssociationSet Name="FK_dbo_Sites_dbo_Customers_CustomerId" Association="Self.FK_dbo_Sites_dbo_Customers_CustomerId">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" Association="Self.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId">
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+            <End Role="EnergyCharges" EntitySet="EnergyCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" Association="Self.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId">
+            <End Role="EnergyPoints" EntitySet="EnergyPoints" />
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Sites_dbo_Groups_GroupId" Association="Self.FK_dbo_Sites_dbo_Groups_GroupId">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" Association="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" Association="Self.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId">
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+            <End Role="NetworkCharges" EntitySet="NetworkCharges" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" Association="Self.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId">
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+            <End Role="OtherCharges" EntitySet="OtherCharges" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CimscoPortalModelStoreContainer" CdmEntityContainer="CimscoPortalEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CimscoPortalModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Contact_ContactId" ColumnName="Contact_ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergyCharges">
+            <EntityTypeMapping TypeName="CimscoPortalModel.EnergyCharge">
+              <MappingFragment StoreEntitySet="EnergyCharges">
+                <ScalarProperty Name="EnergyChargeId" ColumnName="EnergyChargeId" />
+                <ScalarProperty Name="BD0004" ColumnName="BD0004" />
+                <ScalarProperty Name="BD0408" ColumnName="BD0408" />
+                <ScalarProperty Name="BD0812" ColumnName="BD0812" />
+                <ScalarProperty Name="BD1216" ColumnName="BD1216" />
+                <ScalarProperty Name="BD1620" ColumnName="BD1620" />
+                <ScalarProperty Name="BD2024" ColumnName="BD2024" />
+                <ScalarProperty Name="NBD0004" ColumnName="NBD0004" />
+                <ScalarProperty Name="NBD0408" ColumnName="NBD0408" />
+                <ScalarProperty Name="NBD0812" ColumnName="NBD0812" />
+                <ScalarProperty Name="NBD1216" ColumnName="NBD1216" />
+                <ScalarProperty Name="NBD1620" ColumnName="NBD1620" />
+                <ScalarProperty Name="NBD2024" ColumnName="NBD2024" />
+                <ScalarProperty Name="BD0004R" ColumnName="BD0004R" />
+                <ScalarProperty Name="BD0408R" ColumnName="BD0408R" />
+                <ScalarProperty Name="BD0812R" ColumnName="BD0812R" />
+                <ScalarProperty Name="BD1216R" ColumnName="BD1216R" />
+                <ScalarProperty Name="BD1620R" ColumnName="BD1620R" />
+                <ScalarProperty Name="BD2024R" ColumnName="BD2024R" />
+                <ScalarProperty Name="NBD0004R" ColumnName="NBD0004R" />
+                <ScalarProperty Name="NBD0408R" ColumnName="NBD0408R" />
+                <ScalarProperty Name="NBD0812R" ColumnName="NBD0812R" />
+                <ScalarProperty Name="NBD1216R" ColumnName="NBD1216R" />
+                <ScalarProperty Name="NBD1620R" ColumnName="NBD1620R" />
+                <ScalarProperty Name="NBD2024R" ColumnName="NBD2024R" />
+                <ScalarProperty Name="BDQ0004" ColumnName="BDQ0004" />
+                <ScalarProperty Name="BDL0004" ColumnName="BDL0004" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergyPoints">
+            <EntityTypeMapping TypeName="CimscoPortalModel.EnergyPoint">
+              <MappingFragment StoreEntitySet="EnergyPoints">
+                <ScalarProperty Name="EnergyPointId" ColumnName="EnergyPointId" />
+                <ScalarProperty Name="EnergyPointNumber" ColumnName="EnergyPointNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="CimscoPortalModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="Contact_ContactId" ColumnName="Contact_ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InvoiceSummaries">
+            <EntityTypeMapping TypeName="CimscoPortalModel.InvoiceSummary">
+              <MappingFragment StoreEntitySet="InvoiceSummaries">
+                <ScalarProperty Name="InvoiceSummaryId" ColumnName="InvoiceSummaryId" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="GstTotal" ColumnName="GstTotal" />
+                <ScalarProperty Name="InvoiceTotal" ColumnName="InvoiceTotal" />
+                <ScalarProperty Name="AccountNumber" ColumnName="AccountNumber" />
+                <ScalarProperty Name="CustomerNumber" ColumnName="CustomerNumber" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="NetworkChargesTotal" ColumnName="NetworkChargesTotal" />
+                <ScalarProperty Name="EnergyChargesTotal" ColumnName="EnergyChargesTotal" />
+                <ScalarProperty Name="MiscChargesTotal" ColumnName="MiscChargesTotal" />
+                <ScalarProperty Name="TotalCharges" ColumnName="TotalCharges" />
+                <ScalarProperty Name="GSTCharges" ColumnName="GSTCharges" />
+                <ScalarProperty Name="TotalNetworkCharges" ColumnName="TotalNetworkCharges" />
+                <ScalarProperty Name="TotalMiscCharges" ColumnName="TotalMiscCharges" />
+                <ScalarProperty Name="TotalEnergyCharges" ColumnName="TotalEnergyCharges" />
+                <ScalarProperty Name="ConnectionNumber" ColumnName="ConnectionNumber" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="InvoiceDueDate" ColumnName="InvoiceDueDate" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Approved" ColumnName="Approved" />
+                <ScalarProperty Name="ApprovedById" ColumnName="ApprovedById" />
+                <ScalarProperty Name="ApprovedDate" ColumnName="ApprovedDate" />
+                <ScalarProperty Name="PercentageChange" ColumnName="PercentageChange" />
+                <ScalarProperty Name="PeriodStart" ColumnName="PeriodStart" />
+                <ScalarProperty Name="PeriodEnd" ColumnName="PeriodEnd" />
+                <ScalarProperty Name="EnergyPointId" ColumnName="EnergyPointId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="KwhTotal" ColumnName="KwhTotal" />
+                <ScalarProperty Name="Verified" ColumnName="Verified" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NetworkCharges">
+            <EntityTypeMapping TypeName="CimscoPortalModel.NetworkCharge">
+              <MappingFragment StoreEntitySet="NetworkCharges">
+                <ScalarProperty Name="NetworkChargeId" ColumnName="NetworkChargeId" />
+                <ScalarProperty Name="VariableBD" ColumnName="VariableBD" />
+                <ScalarProperty Name="VariableNBD" ColumnName="VariableNBD" />
+                <ScalarProperty Name="CapacityCharge" ColumnName="CapacityCharge" />
+                <ScalarProperty Name="DemandCharge" ColumnName="DemandCharge" />
+                <ScalarProperty Name="FixedCharge" ColumnName="FixedCharge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OtherCharges">
+            <EntityTypeMapping TypeName="CimscoPortalModel.OtherCharge">
+              <MappingFragment StoreEntitySet="OtherCharges">
+                <ScalarProperty Name="OtherChargeId" ColumnName="OtherChargeId" />
+                <ScalarProperty Name="BDSVC" ColumnName="BDSVC" />
+                <ScalarProperty Name="BDSVCR" ColumnName="BDSVCR" />
+                <ScalarProperty Name="NBDSVC" ColumnName="NBDSVC" />
+                <ScalarProperty Name="NBDSVCR" ColumnName="NBDSVCR" />
+                <ScalarProperty Name="EALevy" ColumnName="EALevy" />
+                <ScalarProperty Name="EALevyR" ColumnName="EALevyR" />
+                <ScalarProperty Name="AdminCharge" ColumnName="AdminCharge" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="CimscoPortalModel.Site">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="SiteArea" ColumnName="SiteArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

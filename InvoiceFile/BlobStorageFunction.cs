@@ -41,17 +41,13 @@ namespace InvoiceFile
         }
 
 
-        public static bool UploadBlob(string blobname, string containername, string content, CloudStorageAccount storageAccount)
+        public static bool UploadBlob(string blobname, string containername, byte[] content, CloudStorageAccount storageAccount)
         {
             CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
             CloudBlobContainer container = blobClient.GetContainerReference(containername.ToLower());
             CloudBlockBlob blockBlob = container.GetBlockBlobReference(blobname.ToLower());
-            using (var stream = new MemoryStream())
+            using (var stream = new MemoryStream(content))
             {
-                StreamWriter writer = new StreamWriter(stream);
-                writer.Write(content);
-                writer.Flush();
-                stream.Position = 0;
                 blockBlob.UploadFromStream(stream);
             }
             return true;

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d6f7890e85884c9e870e31247e7224a8" Name="Diagram1">
+        <EntityTypeShape EntityType="CimscoPortalModel.Customer" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoPortalModel.EnergyCharge" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoPortalModel.EnergyPoint" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoPortalModel.Group" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoPortalModel.InvoiceSummary" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoPortalModel.NetworkCharge" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoPortalModel.OtherCharge" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoPortalModel.Site" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_Sites_dbo_Customers_CustomerId" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_Sites_dbo_Groups_GroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
