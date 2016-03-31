@@ -105,5 +105,6 @@ P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\bin\Microsoft.Owi
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\bin\Microsoft.Owin.Security.Google.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\bin\Microsoft.Owin.Security.Twitter.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\obj\Debug\CimscoManage.csprojResolveAssemblyReference.cache
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\obj\Debug\CimscoManage.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage\obj\Debug\CimscoManage.pdb

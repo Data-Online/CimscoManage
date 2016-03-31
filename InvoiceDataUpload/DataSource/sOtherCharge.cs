@@ -22,7 +22,5 @@ namespace InvoiceDataUpload.DataSource
         public decimal EALevy { get; set; }
         public decimal EALevyR { get; set; }
         public decimal AdminCharge { get; set; }
-    
-        public virtual sInvoiceSummary InvoiceSummary { get; set; }
     }
 }

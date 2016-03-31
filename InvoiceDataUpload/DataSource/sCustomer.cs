@@ -14,18 +14,9 @@ namespace InvoiceDataUpload.DataSource
     
     public partial class sCustomer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public sCustomer()
-        {
-            this.Sites = new HashSet<sSite>();
-        }
-    
         public int CustomerId { get; set; }
         public string CustomerName { get; set; }
         public Nullable<int> AddressId { get; set; }
         public Nullable<int> Contact_ContactId { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sSite> Sites { get; set; }
     }
 }

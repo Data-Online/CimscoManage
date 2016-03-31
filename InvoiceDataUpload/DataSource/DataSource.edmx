@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
-          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
           <Property Name="CustomerName" Type="nvarchar" MaxLength="80" />
           <Property Name="AddressId" Type="int" />
           <Property Name="Contact_ContactId" Type="int" />
@@ -50,21 +50,21 @@
           <Key>
             <PropertyRef Name="EnergyPointId" />
           </Key>
-          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
           <Property Name="EnergyPointNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="EnergySuppliers">
           <Key>
             <PropertyRef Name="SupplierId" />
           </Key>
-          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
           <Property Name="SupplierName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="AddressId" Type="int" />
           <Property Name="Contact_ContactId" Type="int" />
@@ -104,6 +104,7 @@
           <Property Name="EnergyPointId" Type="int" Nullable="false" />
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="KWhTotal" Type="decimal" Precision="16" Scale="4" Nullable="false" />
+          <Property Name="CheckedOk" Type="bit" />
         </EntityType>
         <EntityType Name="NetworkCharges">
           <Key>
@@ -133,11 +134,11 @@
           <Key>
             <PropertyRef Name="SiteId" />
           </Key>
-          <Property Name="SiteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
           <Property Name="SiteName" Type="nvarchar" MaxLength="80" />
           <Property Name="GroupId" Type="int" />
           <Property Name="CustomerId" Type="int" />
-          <Property Name="SiteArea" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SiteArea" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId">
           <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="1">
@@ -298,11 +299,10 @@
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="CustomerName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="AddressId" Type="Int32" />
           <Property Name="Contact_ContactId" Type="Int32" />
-          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Customers_CustomerId" FromRole="Customers" ToRole="Sites" />
         </EntityType>
         <EntityType Name="sEnergyCharge">
           <Key>
@@ -335,33 +335,29 @@
           <Property Name="NBD2024R" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
           <Property Name="BDQ0004" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
           <Property Name="BDL0004" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
-          <NavigationProperty Name="InvoiceSummary" Relationship="Self.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" FromRole="EnergyCharges" ToRole="InvoiceSummaries" />
         </EntityType>
         <EntityType Name="sEnergyPoint">
           <Key>
             <PropertyRef Name="EnergyPointId" />
           </Key>
-          <Property Name="EnergyPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnergyPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="EnergyPointNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="InvoiceSummaries" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" FromRole="EnergyPoints" ToRole="InvoiceSummaries" />
         </EntityType>
         <EntityType Name="sEnergySupplier">
           <Key>
             <PropertyRef Name="SupplierId" />
           </Key>
-          <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="InvoiceSummaries" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId" FromRole="EnergySuppliers" ToRole="InvoiceSummaries" />
         </EntityType>
         <EntityType Name="sGroup">
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddressId" Type="Int32" />
           <Property Name="Contact_ContactId" Type="Int32" />
-          <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Groups_GroupId" FromRole="Groups" ToRole="Sites" />
         </EntityType>
         <EntityType Name="sInvoiceSummary">
           <Key>
@@ -404,6 +400,7 @@
           <NavigationProperty Name="Site" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" FromRole="InvoiceSummaries" ToRole="Sites" />
           <NavigationProperty Name="NetworkCharge" Relationship="Self.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" FromRole="InvoiceSummaries" ToRole="NetworkCharges" />
           <NavigationProperty Name="OtherCharge" Relationship="Self.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" FromRole="InvoiceSummaries" ToRole="OtherCharges" />
+          <Property Name="CheckedOk" Type="Boolean" />
         </EntityType>
         <EntityType Name="sNetworkCharge">
           <Key>
@@ -415,7 +412,6 @@
           <Property Name="CapacityCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
           <Property Name="DemandCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
           <Property Name="FixedCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
-          <NavigationProperty Name="InvoiceSummary" Relationship="Self.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" FromRole="NetworkCharges" ToRole="InvoiceSummaries" />
         </EntityType>
         <EntityType Name="sOtherCharge">
           <Key>
@@ -429,20 +425,18 @@
           <Property Name="EALevy" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
           <Property Name="EALevyR" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
           <Property Name="AdminCharge" Type="Decimal" Precision="12" Scale="4" Nullable="false" />
-          <NavigationProperty Name="InvoiceSummary" Relationship="Self.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" FromRole="OtherCharges" ToRole="InvoiceSummaries" />
         </EntityType>
         <EntityType Name="sSite">
           <Key>
             <PropertyRef Name="SiteId" />
           </Key>
-          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="SiteName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="GroupId" Type="Int32" />
           <Property Name="CustomerId" Type="Int32" />
-          <Property Name="SiteArea" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SiteArea" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
           <NavigationProperty Name="Customer" Relationship="Self.FK_dbo_Sites_dbo_Customers_CustomerId" FromRole="Sites" ToRole="Customers" />
           <NavigationProperty Name="Group" Relationship="Self.FK_dbo_Sites_dbo_Groups_GroupId" FromRole="Sites" ToRole="Groups" />
-          <NavigationProperty Name="InvoiceSummaries" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" FromRole="Sites" ToRole="InvoiceSummaries" />
         </EntityType>
         <Association Name="FK_dbo_Sites_dbo_Customers_CustomerId">
           <End Role="Customers" Type="CimscoIDE_dbModel.sCustomer" Multiplicity="0..1" />
@@ -673,6 +667,7 @@
           <EntitySetMapping Name="sInvoiceSummaries">
             <EntityTypeMapping TypeName="CimscoIDE_dbModel.sInvoiceSummary">
               <MappingFragment StoreEntitySet="InvoiceSummaries">
+                <ScalarProperty Name="CheckedOk" ColumnName="CheckedOk" />
                 <ScalarProperty Name="InvoiceSummaryId" ColumnName="InvoiceSummaryId" />
                 <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
                 <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />

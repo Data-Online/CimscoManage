@@ -14,16 +14,7 @@ namespace InvoiceDataUpload.DataSource
     
     public partial class sEnergyPoint
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public sEnergyPoint()
-        {
-            this.InvoiceSummaries = new HashSet<sInvoiceSummary>();
-        }
-    
         public int EnergyPointId { get; set; }
         public string EnergyPointNumber { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sInvoiceSummary> InvoiceSummaries { get; set; }
     }
 }

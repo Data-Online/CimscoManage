@@ -46,11 +46,13 @@ namespace InvoiceDataUpload.DataTarget
         public int SupplierId { get; set; }
         public decimal KwhTotal { get; set; }
         public bool Verified { get; set; }
+        public bool OnFile { get; set; }
     
         public virtual EnergyCharge EnergyCharge { get; set; }
         public virtual EnergyPoint EnergyPoint { get; set; }
         public virtual Site Site { get; set; }
         public virtual NetworkCharge NetworkCharge { get; set; }
         public virtual OtherCharge OtherCharge { get; set; }
+        public virtual EnergySupplier EnergySupplier { get; set; }
     }
 }

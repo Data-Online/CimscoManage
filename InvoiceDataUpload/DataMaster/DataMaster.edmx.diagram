@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="11acfac553eb4cc693322238fd0db878" Name="Diagram1">
+        <EntityTypeShape EntityType="CimscoNZModel.Customer" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoNZModel.EnergyPoint" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoNZModel.EnergySupplier" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoNZModel.Group" Width="1.5" PointX="0.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoNZModel.Site" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <AssociationConnector Association="CimscoNZModel.Customer_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoNZModel.Customers_Group_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoNZModel.EnergyPoints_Site_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoNZModel.EnergyPoints_Supplier_fk" ManuallyRouted="false" />
+        <AssociationConnector Association="CimscoNZModel.Sites_Group_fk" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

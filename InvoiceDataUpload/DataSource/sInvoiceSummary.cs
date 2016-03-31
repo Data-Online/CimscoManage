@@ -45,6 +45,7 @@ namespace InvoiceDataUpload.DataSource
         public int EnergyPointId { get; set; }
         public int SupplierId { get; set; }
         public decimal KWhTotal { get; set; }
+        public Nullable<bool> CheckedOk { get; set; }
     
         public virtual sEnergyCharge EnergyCharge { get; set; }
         public virtual sEnergyPoint EnergyPoint { get; set; }

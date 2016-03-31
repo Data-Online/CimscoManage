@@ -27,5 +27,6 @@ namespace InvoiceDataUpload.DataTarget
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Site> Sites { get; set; }
+        public virtual Contact Contact { get; set; }
     }
 }

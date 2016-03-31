@@ -14,18 +14,9 @@ namespace InvoiceDataUpload.DataSource
     
     public partial class sGroup
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public sGroup()
-        {
-            this.Sites = new HashSet<sSite>();
-        }
-    
         public int GroupId { get; set; }
         public string GroupName { get; set; }
         public Nullable<int> AddressId { get; set; }
         public Nullable<int> Contact_ContactId { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sSite> Sites { get; set; }
     }
 }

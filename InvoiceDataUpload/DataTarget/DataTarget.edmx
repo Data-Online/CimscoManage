@@ -4,7 +4,27 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CimscoPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CimscoPortalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="City" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contacts">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="20" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="20" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="20" />
+          <Property Name="Salutation" Type="nvarchar" MaxLength="5" />
+          <Property Name="PreferredName" Type="nvarchar" MaxLength="20" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="20" />
+          <Property Name="eMail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Customers">
           <Key>
             <PropertyRef Name="CustomerId" />
@@ -50,8 +70,15 @@
           <Key>
             <PropertyRef Name="EnergyPointId" />
           </Key>
-          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
           <Property Name="EnergyPointNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="EnergySuppliers">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
@@ -98,6 +125,7 @@
           <Property Name="SupplierId" Type="int" Nullable="false" />
           <Property Name="KwhTotal" Type="decimal" Precision="12" Scale="4" Nullable="false" />
           <Property Name="Verified" Type="bit" Nullable="false" />
+          <Property Name="OnFile" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="NetworkCharges">
           <Key>
@@ -133,6 +161,26 @@
           <Property Name="CustomerId" Type="int" />
           <Property Name="SiteArea" Type="decimal" Precision="12" Scale="4" Nullable="false" />
         </EntityType>
+        <EntityType Name="SystemConfiguration">
+          <Key>
+            <PropertyRef Name="SystemConfigurationId" />
+          </Key>
+          <Property Name="SystemConfigurationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Key" Type="nvarchar" MaxLength="50" />
+          <Property Name="Values" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_dbo_Customers_dbo_Contacts_Contact_ContactId">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="0..1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="Contact_ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId">
           <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -147,6 +195,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_dbo_Groups_dbo_Contacts_Contact_ContactId">
+          <End Role="Contacts" Type="Self.Contacts" Multiplicity="0..1" />
+          <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contacts">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Groups">
+              <PropertyRef Name="Contact_ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId">
           <End Role="EnergyPoints" Type="Self.EnergyPoints" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -158,6 +218,20 @@
             </Principal>
             <Dependent Role="InvoiceSummaries">
               <PropertyRef Name="EnergyPointId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId">
+          <End Role="EnergySuppliers" Type="Self.EnergySuppliers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="InvoiceSummaries" Type="Self.InvoiceSummaries" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergySuppliers">
+              <PropertyRef Name="SupplierId" />
+            </Principal>
+            <Dependent Role="InvoiceSummaries">
+              <PropertyRef Name="SupplierId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -228,20 +302,36 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="CimscoPortalModelStoreContainer">
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Contacts" EntityType="Self.Contacts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EnergyCharges" EntityType="Self.EnergyCharges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EnergyPoints" EntityType="Self.EnergyPoints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergySuppliers" EntityType="Self.EnergySuppliers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="InvoiceSummaries" EntityType="Self.InvoiceSummaries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NetworkCharges" EntityType="Self.NetworkCharges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OtherCharges" EntityType="Self.OtherCharges" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SystemConfiguration" EntityType="Self.SystemConfiguration" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_Customers_dbo_Contacts_Contact_ContactId" Association="Self.FK_dbo_Customers_dbo_Contacts_Contact_ContactId">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" Association="Self.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId">
             <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
             <End Role="EnergyCharges" EntitySet="EnergyCharges" />
           </AssociationSet>
+          <AssociationSet Name="FK_dbo_Groups_dbo_Contacts_Contact_ContactId" Association="Self.FK_dbo_Groups_dbo_Contacts_Contact_ContactId">
+            <End Role="Contacts" EntitySet="Contacts" />
+            <End Role="Groups" EntitySet="Groups" />
+          </AssociationSet>
           <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" Association="Self.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId">
             <End Role="EnergyPoints" EntitySet="EnergyPoints" />
+            <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId" Association="Self.FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId">
+            <End Role="EnergySuppliers" EntitySet="EnergySuppliers" />
             <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
           </AssociationSet>
           <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" Association="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId">
@@ -265,8 +355,7 @@
             <End Role="Sites" EntitySet="Sites" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CimscoPortalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -274,11 +363,12 @@
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
-          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="CustomerName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="AddressId" Type="Int32" />
           <Property Name="Contact_ContactId" Type="Int32" />
           <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Customers_CustomerId" FromRole="Customers" ToRole="Sites" />
+          <NavigationProperty Name="Contact" Relationship="CimscoPortalModel.FK_dbo_Customers_dbo_Contacts_Contact_ContactId" FromRole="Customer" ToRole="Contact" />
         </EntityType>
         <EntityType Name="EnergyCharge">
           <Key>
@@ -317,7 +407,7 @@
           <Key>
             <PropertyRef Name="EnergyPointId" />
           </Key>
-          <Property Name="EnergyPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnergyPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="EnergyPointNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="InvoiceSummaries" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" FromRole="EnergyPoints" ToRole="InvoiceSummaries" />
         </EntityType>
@@ -325,11 +415,12 @@
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AddressId" Type="Int32" />
           <Property Name="Contact_ContactId" Type="Int32" />
           <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Groups_GroupId" FromRole="Groups" ToRole="Sites" />
+          <NavigationProperty Name="Contact" Relationship="CimscoPortalModel.FK_dbo_Groups_dbo_Contacts_Contact_ContactId" FromRole="Group" ToRole="Contact" />
         </EntityType>
         <EntityType Name="InvoiceSummary">
           <Key>
@@ -372,6 +463,8 @@
           <NavigationProperty Name="Site" Relationship="Self.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" FromRole="InvoiceSummaries" ToRole="Sites" />
           <NavigationProperty Name="NetworkCharge" Relationship="Self.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" FromRole="InvoiceSummaries" ToRole="NetworkCharges" />
           <NavigationProperty Name="OtherCharge" Relationship="Self.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" FromRole="InvoiceSummaries" ToRole="OtherCharges" />
+          <NavigationProperty Name="EnergySupplier" Relationship="CimscoPortalModel.FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId" FromRole="InvoiceSummary" ToRole="EnergySupplier" />
+          <Property Name="OnFile" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="NetworkCharge">
           <Key>
@@ -403,7 +496,7 @@
           <Key>
             <PropertyRef Name="SiteId" />
           </Key>
-          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
           <Property Name="SiteName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
           <Property Name="GroupId" Type="Int32" />
           <Property Name="CustomerId" Type="Int32" />
@@ -543,7 +636,99 @@
             <End Role="InvoiceSummaries" EntitySet="InvoiceSummaries" />
             <End Role="OtherCharges" EntitySet="OtherCharges" />
           </AssociationSet>
+          <EntitySet Name="EnergySuppliers" EntityType="CimscoPortalModel.EnergySupplier" />
+          <AssociationSet Name="FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId" Association="CimscoPortalModel.FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId">
+            <End Role="EnergySupplier" EntitySet="EnergySuppliers" />
+            <End Role="InvoiceSummary" EntitySet="InvoiceSummaries" />
+          </AssociationSet>
+          <EntitySet Name="Cities" EntityType="CimscoPortalModel.City" />
+          <EntitySet Name="Contacts" EntityType="CimscoPortalModel.Contact" />
+          <EntitySet Name="SystemConfigurations" EntityType="CimscoPortalModel.SystemConfiguration" />
+          <AssociationSet Name="FK_dbo_Customers_dbo_Contacts_Contact_ContactId" Association="CimscoPortalModel.FK_dbo_Customers_dbo_Contacts_Contact_ContactId">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Groups_dbo_Contacts_Contact_ContactId" Association="CimscoPortalModel.FK_dbo_Groups_dbo_Contacts_Contact_ContactId">
+            <End Role="Contact" EntitySet="Contacts" />
+            <End Role="Group" EntitySet="Groups" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="EnergySupplier">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="None" />
+          <Property Name="SupplierName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="InvoiceSummaries" Relationship="CimscoPortalModel.FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId" FromRole="EnergySupplier" ToRole="InvoiceSummary" />
+        </EntityType>
+        <Association Name="FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId">
+          <End Type="CimscoPortalModel.EnergySupplier" Role="EnergySupplier" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CimscoPortalModel.InvoiceSummary" Role="InvoiceSummary" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergySupplier">
+              <PropertyRef Name="SupplierId" />
+            </Principal>
+            <Dependent Role="InvoiceSummary">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityId" />
+          </Key>
+          <Property Name="CityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="City1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Contact">
+          <Key>
+            <PropertyRef Name="ContactId" />
+          </Key>
+          <Property Name="ContactId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Salutation" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="PreferredName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="eMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customers" Relationship="CimscoPortalModel.FK_dbo_Customers_dbo_Contacts_Contact_ContactId" FromRole="Contact" ToRole="Customer" />
+          <NavigationProperty Name="Groups" Relationship="CimscoPortalModel.FK_dbo_Groups_dbo_Contacts_Contact_ContactId" FromRole="Contact" ToRole="Group" />
+        </EntityType>
+        <EntityType Name="SystemConfiguration">
+          <Key>
+            <PropertyRef Name="SystemConfigurationId" />
+          </Key>
+          <Property Name="SystemConfigurationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Key" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Values" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_dbo_Customers_dbo_Contacts_Contact_ContactId">
+          <End Type="CimscoPortalModel.Contact" Role="Contact" Multiplicity="0..1" />
+          <End Type="CimscoPortalModel.Customer" Role="Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Contact_ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Groups_dbo_Contacts_Contact_ContactId">
+          <End Type="CimscoPortalModel.Contact" Role="Contact" Multiplicity="0..1" />
+          <End Type="CimscoPortalModel.Group" Role="Group" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contact">
+              <PropertyRef Name="ContactId" />
+            </Principal>
+            <Dependent Role="Group">
+              <PropertyRef Name="Contact_ContactId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -614,6 +799,7 @@
           <EntitySetMapping Name="InvoiceSummaries">
             <EntityTypeMapping TypeName="CimscoPortalModel.InvoiceSummary">
               <MappingFragment StoreEntitySet="InvoiceSummaries">
+                <ScalarProperty Name="OnFile" ColumnName="OnFile" />
                 <ScalarProperty Name="InvoiceSummaryId" ColumnName="InvoiceSummaryId" />
                 <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
                 <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
@@ -683,6 +869,45 @@
                 <ScalarProperty Name="GroupId" ColumnName="GroupId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="SiteArea" ColumnName="SiteArea" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergySuppliers">
+            <EntityTypeMapping TypeName="CimscoPortalModel.EnergySupplier">
+              <MappingFragment StoreEntitySet="EnergySuppliers">
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="CimscoPortalModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="City1" ColumnName="City" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contacts">
+            <EntityTypeMapping TypeName="CimscoPortalModel.Contact">
+              <MappingFragment StoreEntitySet="Contacts">
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PreferredName" ColumnName="PreferredName" />
+                <ScalarProperty Name="Salutation" ColumnName="Salutation" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="ContactId" ColumnName="ContactId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SystemConfigurations">
+            <EntityTypeMapping TypeName="CimscoPortalModel.SystemConfiguration">
+              <MappingFragment StoreEntitySet="SystemConfiguration">
+                <ScalarProperty Name="Values" ColumnName="Values" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="SystemConfigurationId" ColumnName="SystemConfigurationId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

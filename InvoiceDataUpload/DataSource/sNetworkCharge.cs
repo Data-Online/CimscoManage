@@ -20,7 +20,5 @@ namespace InvoiceDataUpload.DataSource
         public decimal CapacityCharge { get; set; }
         public decimal DemandCharge { get; set; }
         public decimal FixedCharge { get; set; }
-    
-        public virtual sInvoiceSummary InvoiceSummary { get; set; }
     }
 }

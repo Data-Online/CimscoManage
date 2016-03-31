@@ -14,21 +14,13 @@ namespace InvoiceDataUpload.DataSource
     
     public partial class sSite
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public sSite()
-        {
-            this.InvoiceSummaries = new HashSet<sInvoiceSummary>();
-        }
-    
         public int SiteId { get; set; }
         public string SiteName { get; set; }
         public Nullable<int> GroupId { get; set; }
         public Nullable<int> CustomerId { get; set; }
-        public Nullable<decimal> SiteArea { get; set; }
+        public decimal SiteArea { get; set; }
     
         public virtual sCustomer Customer { get; set; }
         public virtual sGroup Group { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<sInvoiceSummary> InvoiceSummaries { get; set; }
     }
 }

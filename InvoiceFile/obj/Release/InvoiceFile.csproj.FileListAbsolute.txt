@@ -58,3 +58,4 @@ P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\bin\Release\zh-Han
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\obj\Release\InvoiceFile.csprojResolveAssemblyReference.cache
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\obj\Release\InvoiceFile.exe
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\obj\Release\InvoiceFile.pdb
+P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\bin\Release\System.Net.Http.Extensions.dll

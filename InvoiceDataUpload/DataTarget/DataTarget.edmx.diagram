@@ -20,6 +20,13 @@
         <AssociationConnector Association="CimscoPortalModel.FK_dbo_InvoiceSummaries_dbo_Sites_SiteId" ManuallyRouted="false" />
         <AssociationConnector Association="CimscoPortalModel.FK_dbo_NetworkCharges_dbo_InvoiceSummaries_NetworkChargeId" ManuallyRouted="false" />
         <AssociationConnector Association="CimscoPortalModel.FK_dbo_OtherCharges_dbo_InvoiceSummaries_OtherChargeId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="CimscoPortalModel.EnergySupplier" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_InvoiceSummaries_dbo_EnergySuppliers_SupplierId" />
+        <EntityTypeShape EntityType="CimscoPortalModel.City" Width="1.5" PointX="10" PointY="4.125" />
+        <EntityTypeShape EntityType="CimscoPortalModel.Contact" Width="1.5" PointX="2.125" PointY="10.375" />
+        <EntityTypeShape EntityType="CimscoPortalModel.SystemConfiguration" Width="1.5" PointX="10" PointY="6" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_Customers_dbo_Contacts_Contact_ContactId" />
+        <AssociationConnector Association="CimscoPortalModel.FK_dbo_Groups_dbo_Contacts_Contact_ContactId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -16,22 +16,15 @@ namespace InvoiceDataUpload
         // AzureWebJobsDashboard and AzureWebJobsStorage
         static void Main()
         {
-            InitializeAutomapper();
+            JobHostConfiguration config = new JobHostConfiguration();
+            config.Queues.BatchSize = 1;
+            config.Queues.MaxDequeueCount = 1;
+            config.Queues.MaxPollingInterval = TimeSpan.FromSeconds(300);
+
+            InvoiceDataUpload.App_Start.AutoMapperConfig.InitializeAutomapper();
             var host = new JobHost();
             // The following code ensures that the WebJob will be running continuously
             host.RunAndBlock();
-        }
-
-        private static void InitializeAutomapper()
-        {
-            AutoMapper.Mapper.CreateMap<sNetworkCharge, NetworkCharge>();
-            AutoMapper.Mapper.CreateMap<sOtherCharge, OtherCharge>();
-            AutoMapper.Mapper.CreateMap<sEnergyCharge, EnergyCharge>();
-            AutoMapper.Mapper.CreateMap<sInvoiceSummary, InvoiceSummary>()
-                .ForMember(m => m.EnergyCharge, opt => opt.Ignore())// .MapFrom(i => i.EnergyCharge))
-                .ForMember(m => m.NetworkCharge, opt => opt.Ignore()) //.MapFrom(i => i.NetworkCharge))
-                .ForMember(m => m.OtherCharge, opt => opt.Ignore()) //.MapFrom(i => i.OtherCharge))
-                ;
         }
     }
 }

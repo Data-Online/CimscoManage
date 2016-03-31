@@ -119,5 +119,6 @@ P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\bin\Debug\ko\Micro
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\bin\Debug\ru\Microsoft.Data.Services.Client.resources.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\bin\Debug\zh-Hans\Microsoft.Data.Services.Client.resources.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\bin\Debug\zh-Hant\Microsoft.Data.Services.Client.resources.dll
+P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\obj\Debug\InvoiceFile.csprojResolveAssemblyReference.cache
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\obj\Debug\InvoiceFile.exe
 P:\Projects\Cloud_Development\GitHub\CimscoManage\InvoiceFile\obj\Debug\InvoiceFile.pdb

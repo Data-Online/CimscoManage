@@ -5,15 +5,15 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="c11979b43f0446f8bbb023bf080b6f1e" Name="Diagram1">
-        <EntityTypeShape EntityType="CimscoIDE_dbModel.sCustomer" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoIDE_dbModel.sCustomer" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CimscoIDE_dbModel.sEnergyCharge" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="CimscoIDE_dbModel.sEnergyPoint" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="CimscoIDE_dbModel.sEnergySupplier" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="CimscoIDE_dbModel.sGroup" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="CimscoIDE_dbModel.sInvoiceSummary" Width="1.5" PointX="5.25" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoIDE_dbModel.sEnergyPoint" Width="1.5" PointX="3" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoIDE_dbModel.sEnergySupplier" Width="1.5" PointX="3.125" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoIDE_dbModel.sGroup" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoIDE_dbModel.sInvoiceSummary" Width="1.5" PointX="5.375" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="CimscoIDE_dbModel.sNetworkCharge" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="CimscoIDE_dbModel.sOtherCharge" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="CimscoIDE_dbModel.sSite" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoIDE_dbModel.sOtherCharge" Width="1.5" PointX="9.625" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CimscoIDE_dbModel.sSite" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
         <AssociationConnector Association="CimscoIDE_dbModel.FK_dbo_Sites_dbo_Customers_CustomerId" ManuallyRouted="false" />
         <AssociationConnector Association="CimscoIDE_dbModel.FK_dbo_EnergyCharges_dbo_InvoiceSummaries_EnergyChargeId" ManuallyRouted="false" />
         <AssociationConnector Association="CimscoIDE_dbModel.FK_dbo_InvoiceSummaries_dbo_EnergyPoints_EnergyPointId" ManuallyRouted="false" />

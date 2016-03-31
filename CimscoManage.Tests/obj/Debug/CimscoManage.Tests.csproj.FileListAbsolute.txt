@@ -44,6 +44,8 @@ P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\C
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\CimscoManage.Tests.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\CimscoManage.Tests.pdb
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\CimscoManage.dll
+P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\EntityFramework.dll
+P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\EntityFramework.SqlServer.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Newtonsoft.Json.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\System.Web.Helpers.dll
@@ -58,11 +60,12 @@ P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\M
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\System.Web.Optimization.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Owin.dll
-P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\EntityFramework.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.Security.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.dll
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\CimscoManage.pdb
+P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\EntityFramework.xml
+P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\EntityFramework.SqlServer.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Newtonsoft.Json.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\System.Web.Helpers.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\System.Web.Mvc.xml
@@ -75,7 +78,6 @@ P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\M
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\System.Web.Optimization.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.xml
-P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\EntityFramework.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.Security.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 P:\Projects\Cloud_Development\GitHub\CimscoManage\CimscoManage.Tests\bin\Debug\Microsoft.Owin.Host.SystemWeb.xml

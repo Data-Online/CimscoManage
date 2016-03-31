@@ -33,5 +33,9 @@ namespace InvoiceDataUpload.DataTarget
         public virtual DbSet<NetworkCharge> NetworkCharges { get; set; }
         public virtual DbSet<OtherCharge> OtherCharges { get; set; }
         public virtual DbSet<Site> Sites { get; set; }
+        public virtual DbSet<EnergySupplier> EnergySuppliers { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Contact> Contacts { get; set; }
+        public virtual DbSet<SystemConfiguration> SystemConfigurations { get; set; }
     }
 }

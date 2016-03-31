@@ -41,7 +41,5 @@ namespace InvoiceDataUpload.DataSource
         public decimal NBD2024R { get; set; }
         public decimal BDQ0004 { get; set; }
         public decimal BDL0004 { get; set; }
-    
-        public virtual sInvoiceSummary InvoiceSummary { get; set; }
     }
 }

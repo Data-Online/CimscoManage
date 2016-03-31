@@ -1,0 +1,630 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CimscoNZModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CustomerLogo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="EnergyPoints" Type="int" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="LogoHeight" Type="int" />
+          <Property Name="LogoWidth" Type="int" />
+          <Property Name="InvoiceApproverName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceApproverEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoicePayerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoicePayerEmail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EnergyPoints">
+          <Key>
+            <PropertyRef Name="EnergyPointId" />
+          </Key>
+          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConnectionNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="SiteId" Type="int" Nullable="false" />
+          <Property Name="SupplierId" Type="int" Nullable="false" />
+          <Property Name="LocationNotes" Type="nvarchar" MaxLength="256" />
+          <Property Name="LinesCompanyId" Type="int" Nullable="false" />
+          <Property Name="MeterId" Type="nvarchar" MaxLength="30" />
+          <Property Name="MeteringCompanyId" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="Phases" Type="int" Nullable="false" />
+          <Property Name="GridExitPoint" Type="nvarchar" MaxLength="12" Nullable="false" />
+          <Property Name="GridExitPointRegion" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ConnectionType" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="GLCode" Type="nvarchar" MaxLength="12" />
+          <Property Name="AssessedCapacity" Type="int" />
+          <Property Name="WeatherStationId" Type="int" />
+          <Property Name="NIWAStationTemperature" Type="nvarchar" MaxLength="20" />
+          <Property Name="NIWAStationRain" Type="nvarchar" MaxLength="20" />
+          <Property Name="NIWAStationSun" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="EnergySuppliers">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SupplierName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SupplierLogo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SupplyElectricity" Type="bit" />
+          <Property Name="SupplyGas" Type="bit" />
+          <Property Name="SupplyOther" Type="bit" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="eMail" Type="varchar" MaxLength="50" />
+          <Property Name="NetworkVariableNBDRate" Type="numeric" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="NetworkVariableBDRate" Type="numeric" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="LogoHeight" Type="int" />
+          <Property Name="LogoWidth" Type="int" />
+          <Property Name="NetworkDemandRate" Type="numeric" Precision="6" Scale="4" />
+          <Property Name="NetworkCapacityRate" Type="numeric" Precision="6" Scale="4" />
+          <Property Name="NetworkFixedRate" Type="numeric" Precision="6" Scale="4" />
+          <Property Name="NetworkVariableRate" Type="numeric" Precision="6" Scale="4" />
+          <Property Name="OtherAdministrationCharge" Type="numeric" Precision="6" Scale="4" />
+          <Property Name="OtherCTMonthlyFee" Type="numeric" Precision="10" Scale="4" />
+          <Property Name="OtherDataReconciliationCharge" Type="numeric" Precision="10" Scale="4" />
+          <Property Name="OtherECCALevyCharge" Type="numeric" Precision="8" Scale="4" />
+          <Property Name="OtherMeterRentalCharge" Type="numeric" Precision="10" Scale="4" />
+          <Property Name="EnergyServicesRateNBD" Type="numeric" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="EnergyServicesRateBD" Type="numeric" Precision="6" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Groups">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="GroupLogo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="eMail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="InvoiceApproverName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceApproverEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoicePayerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoicePayerEmail" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sites">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SiteLogo" Type="nvarchar" MaxLength="50" />
+          <Property Name="SiteName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="10" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
+          <Property Name="Contact" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="CustomerId" Type="int" Nullable="false" />
+          <Property Name="GroupId" Type="int" Nullable="false" />
+          <Property Name="EnergyPoints" Type="int" Nullable="false" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
+          <Property Name="InvoiceApproverName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoiceApproverEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoicePayerName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InvoicePayerEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="IndustryId" Type="int" />
+          <Property Name="LandSqMeters" Type="int" />
+          <Property Name="TotalFloorSpaceSqMeters" Type="int" />
+          <Property Name="ProductiveFloorSpaceSqMeters" Type="int" />
+        </EntityType>
+        <Association Name="Customer_fk">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="1" />
+          <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customers_Group_fk">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnergyPoints_Site_fk">
+          <End Role="Sites" Type="Self.Sites" Multiplicity="1" />
+          <End Role="EnergyPoints" Type="Self.EnergyPoints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="EnergyPoints">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnergyPoints_Supplier_fk">
+          <End Role="EnergySuppliers" Type="Self.EnergySuppliers" Multiplicity="1" />
+          <End Role="EnergyPoints" Type="Self.EnergyPoints" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergySuppliers">
+              <PropertyRef Name="SupplierId" />
+            </Principal>
+            <Dependent Role="EnergyPoints">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sites_Group_fk">
+          <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+          <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CimscoNZModelStoreContainer">
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergyPoints" EntityType="Self.EnergyPoints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EnergySuppliers" EntityType="Self.EnergySuppliers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Customer_fk" Association="Self.Customer_fk">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="Customers_Group_fk" Association="Self.Customers_Group_fk">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="EnergyPoints_Site_fk" Association="Self.EnergyPoints_Site_fk">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="EnergyPoints" EntitySet="EnergyPoints" />
+          </AssociationSet>
+          <AssociationSet Name="EnergyPoints_Supplier_fk" Association="Self.EnergyPoints_Supplier_fk">
+            <End Role="EnergySuppliers" EntitySet="EnergySuppliers" />
+            <End Role="EnergyPoints" EntitySet="EnergyPoints" />
+          </AssociationSet>
+          <AssociationSet Name="Sites_Group_fk" Association="Self.Sites_Group_fk">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CimscoNZModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerId" />
+          </Key>
+          <Property Name="CustomerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CustomerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CustomerLogo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EnergyPoints" Type="Int32" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="LogoHeight" Type="Int32" />
+          <Property Name="LogoWidth" Type="Int32" />
+          <Property Name="InvoiceApproverName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceApproverEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoicePayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoicePayerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Sites" Relationship="Self.Customer_fk" FromRole="Customers" ToRole="Sites" />
+          <NavigationProperty Name="Group" Relationship="Self.Customers_Group_fk" FromRole="Customers" ToRole="Groups" />
+        </EntityType>
+        <EntityType Name="EnergyPoint">
+          <Key>
+            <PropertyRef Name="EnergyPointId" />
+          </Key>
+          <Property Name="EnergyPointId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConnectionNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SiteId" Type="Int32" Nullable="false" />
+          <Property Name="SupplierId" Type="Int32" Nullable="false" />
+          <Property Name="LocationNotes" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="LinesCompanyId" Type="Int32" Nullable="false" />
+          <Property Name="MeterId" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="MeteringCompanyId" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="Phases" Type="Int32" Nullable="false" />
+          <Property Name="GridExitPoint" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GridExitPointRegion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ConnectionType" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GLCode" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="AssessedCapacity" Type="Int32" />
+          <Property Name="WeatherStationId" Type="Int32" />
+          <Property Name="NIWAStationTemperature" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NIWAStationRain" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NIWAStationSun" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Site" Relationship="Self.EnergyPoints_Site_fk" FromRole="EnergyPoints" ToRole="Sites" />
+          <NavigationProperty Name="EnergySupplier" Relationship="Self.EnergyPoints_Supplier_fk" FromRole="EnergyPoints" ToRole="EnergySuppliers" />
+        </EntityType>
+        <EntityType Name="EnergySupplier">
+          <Key>
+            <PropertyRef Name="SupplierId" />
+          </Key>
+          <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SupplierName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SupplierLogo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SupplyElectricity" Type="Boolean" />
+          <Property Name="SupplyGas" Type="Boolean" />
+          <Property Name="SupplyOther" Type="Boolean" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="eMail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NetworkVariableNBDRate" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="NetworkVariableBDRate" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="LogoHeight" Type="Int32" />
+          <Property Name="LogoWidth" Type="Int32" />
+          <Property Name="NetworkDemandRate" Type="Decimal" Precision="6" Scale="4" />
+          <Property Name="NetworkCapacityRate" Type="Decimal" Precision="6" Scale="4" />
+          <Property Name="NetworkFixedRate" Type="Decimal" Precision="6" Scale="4" />
+          <Property Name="NetworkVariableRate" Type="Decimal" Precision="6" Scale="4" />
+          <Property Name="OtherAdministrationCharge" Type="Decimal" Precision="6" Scale="4" />
+          <Property Name="OtherCTMonthlyFee" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="OtherDataReconciliationCharge" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="OtherECCALevyCharge" Type="Decimal" Precision="8" Scale="4" />
+          <Property Name="OtherMeterRentalCharge" Type="Decimal" Precision="10" Scale="4" />
+          <Property Name="EnergyServicesRateNBD" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+          <Property Name="EnergyServicesRateBD" Type="Decimal" Precision="6" Scale="4" Nullable="false" />
+          <NavigationProperty Name="EnergyPoints" Relationship="Self.EnergyPoints_Supplier_fk" FromRole="EnergySuppliers" ToRole="EnergyPoints" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="GroupId" />
+          </Key>
+          <Property Name="GroupId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="GroupLogo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="eMail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="InvoiceApproverName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceApproverEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoicePayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoicePayerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customers" Relationship="Self.Customers_Group_fk" FromRole="Groups" ToRole="Customers" />
+          <NavigationProperty Name="Sites" Relationship="Self.Sites_Group_fk" FromRole="Groups" ToRole="Sites" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteId" />
+          </Key>
+          <Property Name="SiteId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SiteLogo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PostCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Contact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerId" Type="Int32" Nullable="false" />
+          <Property Name="GroupId" Type="Int32" Nullable="false" />
+          <Property Name="EnergyPoints" Type="Int32" Nullable="false" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
+          <Property Name="InvoiceApproverName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoiceApproverEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoicePayerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InvoicePayerEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndustryId" Type="Int32" />
+          <Property Name="LandSqMeters" Type="Int32" />
+          <Property Name="TotalFloorSpaceSqMeters" Type="Int32" />
+          <Property Name="ProductiveFloorSpaceSqMeters" Type="Int32" />
+          <NavigationProperty Name="Customer" Relationship="Self.Customer_fk" FromRole="Sites" ToRole="Customers" />
+          <NavigationProperty Name="EnergyPoints1" Relationship="Self.EnergyPoints_Site_fk" FromRole="Sites" ToRole="EnergyPoints" />
+          <NavigationProperty Name="Group" Relationship="Self.Sites_Group_fk" FromRole="Sites" ToRole="Groups" />
+        </EntityType>
+        <Association Name="Customer_fk">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Sites" Type="Self.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="CustomerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Customers_Group_fk">
+          <End Role="Groups" Type="Self.Group" Multiplicity="1" />
+          <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Customers">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnergyPoints_Site_fk">
+          <End Role="Sites" Type="Self.Site" Multiplicity="1" />
+          <End Role="EnergyPoints" Type="Self.EnergyPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sites">
+              <PropertyRef Name="SiteId" />
+            </Principal>
+            <Dependent Role="EnergyPoints">
+              <PropertyRef Name="SiteId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="EnergyPoints_Supplier_fk">
+          <End Role="EnergySuppliers" Type="Self.EnergySupplier" Multiplicity="1" />
+          <End Role="EnergyPoints" Type="Self.EnergyPoint" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EnergySuppliers">
+              <PropertyRef Name="SupplierId" />
+            </Principal>
+            <Dependent Role="EnergyPoints">
+              <PropertyRef Name="SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sites_Group_fk">
+          <End Role="Groups" Type="Self.Group" Multiplicity="1" />
+          <End Role="Sites" Type="Self.Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Groups">
+              <PropertyRef Name="GroupId" />
+            </Principal>
+            <Dependent Role="Sites">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CimscoNZEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="EnergyPoints" EntityType="Self.EnergyPoint" />
+          <EntitySet Name="EnergySuppliers" EntityType="Self.EnergySupplier" />
+          <EntitySet Name="Groups" EntityType="Self.Group" />
+          <EntitySet Name="Sites" EntityType="Self.Site" />
+          <AssociationSet Name="Customer_fk" Association="Self.Customer_fk">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="Customers_Group_fk" Association="Self.Customers_Group_fk">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Customers" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="EnergyPoints_Site_fk" Association="Self.EnergyPoints_Site_fk">
+            <End Role="Sites" EntitySet="Sites" />
+            <End Role="EnergyPoints" EntitySet="EnergyPoints" />
+          </AssociationSet>
+          <AssociationSet Name="EnergyPoints_Supplier_fk" Association="Self.EnergyPoints_Supplier_fk">
+            <End Role="EnergySuppliers" EntitySet="EnergySuppliers" />
+            <End Role="EnergyPoints" EntitySet="EnergyPoints" />
+          </AssociationSet>
+          <AssociationSet Name="Sites_Group_fk" Association="Self.Sites_Group_fk">
+            <End Role="Groups" EntitySet="Groups" />
+            <End Role="Sites" EntitySet="Sites" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CimscoNZModelStoreContainer" CdmEntityContainer="CimscoNZEntities">
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="CimscoNZModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="CustomerLogo" ColumnName="CustomerLogo" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EnergyPoints" ColumnName="EnergyPoints" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="LogoHeight" ColumnName="LogoHeight" />
+                <ScalarProperty Name="LogoWidth" ColumnName="LogoWidth" />
+                <ScalarProperty Name="InvoiceApproverName" ColumnName="InvoiceApproverName" />
+                <ScalarProperty Name="InvoiceApproverEmail" ColumnName="InvoiceApproverEmail" />
+                <ScalarProperty Name="InvoicePayerName" ColumnName="InvoicePayerName" />
+                <ScalarProperty Name="InvoicePayerEmail" ColumnName="InvoicePayerEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergyPoints">
+            <EntityTypeMapping TypeName="CimscoNZModel.EnergyPoint">
+              <MappingFragment StoreEntitySet="EnergyPoints">
+                <ScalarProperty Name="EnergyPointId" ColumnName="EnergyPointId" />
+                <ScalarProperty Name="ConnectionNumber" ColumnName="ConnectionNumber" />
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="LocationNotes" ColumnName="LocationNotes" />
+                <ScalarProperty Name="LinesCompanyId" ColumnName="LinesCompanyId" />
+                <ScalarProperty Name="MeterId" ColumnName="MeterId" />
+                <ScalarProperty Name="MeteringCompanyId" ColumnName="MeteringCompanyId" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="Phases" ColumnName="Phases" />
+                <ScalarProperty Name="GridExitPoint" ColumnName="GridExitPoint" />
+                <ScalarProperty Name="GridExitPointRegion" ColumnName="GridExitPointRegion" />
+                <ScalarProperty Name="ConnectionType" ColumnName="ConnectionType" />
+                <ScalarProperty Name="GLCode" ColumnName="GLCode" />
+                <ScalarProperty Name="AssessedCapacity" ColumnName="AssessedCapacity" />
+                <ScalarProperty Name="WeatherStationId" ColumnName="WeatherStationId" />
+                <ScalarProperty Name="NIWAStationTemperature" ColumnName="NIWAStationTemperature" />
+                <ScalarProperty Name="NIWAStationRain" ColumnName="NIWAStationRain" />
+                <ScalarProperty Name="NIWAStationSun" ColumnName="NIWAStationSun" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EnergySuppliers">
+            <EntityTypeMapping TypeName="CimscoNZModel.EnergySupplier">
+              <MappingFragment StoreEntitySet="EnergySuppliers">
+                <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+                <ScalarProperty Name="SupplierName" ColumnName="SupplierName" />
+                <ScalarProperty Name="SupplierLogo" ColumnName="SupplierLogo" />
+                <ScalarProperty Name="SupplyElectricity" ColumnName="SupplyElectricity" />
+                <ScalarProperty Name="SupplyGas" ColumnName="SupplyGas" />
+                <ScalarProperty Name="SupplyOther" ColumnName="SupplyOther" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="NetworkVariableNBDRate" ColumnName="NetworkVariableNBDRate" />
+                <ScalarProperty Name="NetworkVariableBDRate" ColumnName="NetworkVariableBDRate" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="LogoHeight" ColumnName="LogoHeight" />
+                <ScalarProperty Name="LogoWidth" ColumnName="LogoWidth" />
+                <ScalarProperty Name="NetworkDemandRate" ColumnName="NetworkDemandRate" />
+                <ScalarProperty Name="NetworkCapacityRate" ColumnName="NetworkCapacityRate" />
+                <ScalarProperty Name="NetworkFixedRate" ColumnName="NetworkFixedRate" />
+                <ScalarProperty Name="NetworkVariableRate" ColumnName="NetworkVariableRate" />
+                <ScalarProperty Name="OtherAdministrationCharge" ColumnName="OtherAdministrationCharge" />
+                <ScalarProperty Name="OtherCTMonthlyFee" ColumnName="OtherCTMonthlyFee" />
+                <ScalarProperty Name="OtherDataReconciliationCharge" ColumnName="OtherDataReconciliationCharge" />
+                <ScalarProperty Name="OtherECCALevyCharge" ColumnName="OtherECCALevyCharge" />
+                <ScalarProperty Name="OtherMeterRentalCharge" ColumnName="OtherMeterRentalCharge" />
+                <ScalarProperty Name="EnergyServicesRateNBD" ColumnName="EnergyServicesRateNBD" />
+                <ScalarProperty Name="EnergyServicesRateBD" ColumnName="EnergyServicesRateBD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="CimscoNZModel.Group">
+              <MappingFragment StoreEntitySet="Groups">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupLogo" ColumnName="GroupLogo" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="eMail" ColumnName="eMail" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="InvoiceApproverName" ColumnName="InvoiceApproverName" />
+                <ScalarProperty Name="InvoiceApproverEmail" ColumnName="InvoiceApproverEmail" />
+                <ScalarProperty Name="InvoicePayerName" ColumnName="InvoicePayerName" />
+                <ScalarProperty Name="InvoicePayerEmail" ColumnName="InvoicePayerEmail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="CimscoNZModel.Site">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="SiteId" ColumnName="SiteId" />
+                <ScalarProperty Name="SiteLogo" ColumnName="SiteLogo" />
+                <ScalarProperty Name="SiteName" ColumnName="SiteName" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="EnergyPoints" ColumnName="EnergyPoints" />
+                <ScalarProperty Name="Enabled" ColumnName="Enabled" />
+                <ScalarProperty Name="InvoiceApproverName" ColumnName="InvoiceApproverName" />
+                <ScalarProperty Name="InvoiceApproverEmail" ColumnName="InvoiceApproverEmail" />
+                <ScalarProperty Name="InvoicePayerName" ColumnName="InvoicePayerName" />
+                <ScalarProperty Name="InvoicePayerEmail" ColumnName="InvoicePayerEmail" />
+                <ScalarProperty Name="IndustryId" ColumnName="IndustryId" />
+                <ScalarProperty Name="LandSqMeters" ColumnName="LandSqMeters" />
+                <ScalarProperty Name="TotalFloorSpaceSqMeters" ColumnName="TotalFloorSpaceSqMeters" />
+                <ScalarProperty Name="ProductiveFloorSpaceSqMeters" ColumnName="ProductiveFloorSpaceSqMeters" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
