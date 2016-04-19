@@ -33,6 +33,11 @@
           <Property Name="CustomerName" Type="nvarchar" MaxLength="80" />
           <Property Name="AddressId" Type="int" />
           <Property Name="Contact_ContactId" Type="int" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="4" />
+          <Property Name="CityId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="EnergyCharges">
           <Key>
@@ -70,14 +75,14 @@
           <Key>
             <PropertyRef Name="EnergyPointId" />
           </Key>
-          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EnergyPointNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="EnergySuppliers">
           <Key>
             <PropertyRef Name="SupplierId" />
           </Key>
-          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SupplierName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
@@ -369,6 +374,11 @@
           <Property Name="Contact_ContactId" Type="Int32" />
           <NavigationProperty Name="Sites" Relationship="Self.FK_dbo_Sites_dbo_Customers_CustomerId" FromRole="Customers" ToRole="Sites" />
           <NavigationProperty Name="Contact" Relationship="CimscoPortalModel.FK_dbo_Customers_dbo_Contacts_Contact_ContactId" FromRole="Customer" ToRole="Contact" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostCode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="EnergyCharge">
           <Key>
@@ -738,6 +748,11 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="CimscoPortalModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
                 <ScalarProperty Name="AddressId" ColumnName="AddressId" />

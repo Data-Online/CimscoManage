@@ -24,6 +24,11 @@ namespace InvoiceDataUpload.DataTarget
         public string CustomerName { get; set; }
         public Nullable<int> AddressId { get; set; }
         public Nullable<int> Contact_ContactId { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Address3 { get; set; }
+        public string PostCode { get; set; }
+        public int CityId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Site> Sites { get; set; }

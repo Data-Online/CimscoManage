@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="CustomerId" />
           </Key>
-          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="CustomerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CustomerName" Type="nvarchar" MaxLength="80" />
           <Property Name="AddressId" Type="int" />
           <Property Name="Contact_ContactId" Type="int" />
@@ -50,21 +50,21 @@
           <Key>
             <PropertyRef Name="EnergyPointId" />
           </Key>
-          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="EnergyPointId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EnergyPointNumber" Type="nvarchar" MaxLength="30" Nullable="false" />
         </EntityType>
         <EntityType Name="EnergySuppliers">
           <Key>
             <PropertyRef Name="SupplierId" />
           </Key>
-          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="SupplierId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SupplierName" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
         <EntityType Name="Groups">
           <Key>
             <PropertyRef Name="GroupId" />
           </Key>
-          <Property Name="GroupId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="GroupId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="AddressId" Type="int" />
           <Property Name="Contact_ContactId" Type="int" />
@@ -134,7 +134,7 @@
           <Key>
             <PropertyRef Name="SiteId" />
           </Key>
-          <Property Name="SiteId" Type="int" StoreGeneratedPattern="None" Nullable="false" />
+          <Property Name="SiteId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SiteName" Type="nvarchar" MaxLength="80" />
           <Property Name="GroupId" Type="int" />
           <Property Name="CustomerId" Type="int" />
